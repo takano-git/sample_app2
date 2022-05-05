@@ -1,0 +1,50 @@
+<section class="hero is-success">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        新規ダイアリー作成
+      </h1>
+    </div>
+  </div>
+</section>
+
+<% if @diary.errors.any? %>
+  <div class="notification is-danger">
+    <h2><%= pluralize(@diary.errors.count, "error") %> prohibited this object from being saved: not successfully</h2>
+    <ul>
+      <% @diary.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-6">
+
+        <%= form_for @diary do |f| %>
+          <div class="field">
+            <%= f.label :title, class: "label" %>
+            <%= f.text_field :title, class: "input" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :body, class: "label" %>
+            <%= f.text_area :body, class: "textarea" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :image, class: "label" %>
+            <%= f.attachment_field :image, class: "input" %>
+          </div>
+
+          <%= f.submit '投稿' , class: "button is-success" %>
+
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</section>
